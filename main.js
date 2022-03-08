@@ -1,5 +1,5 @@
 const imgContainer = document.querySelector(".img-container");
-const cats = ['proto', 'vr'];
+const cats = ['vr', 'proto'];
 cats.forEach(cat => {
   assets[cat].forEach(src => {
     const el = document.createElement("img");
