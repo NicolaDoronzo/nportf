@@ -3,7 +3,7 @@ const cats = ['vr', 'proto'];
 cats.forEach(cat => {
   assets[cat].forEach(src => {
     const el = document.createElement("img");
-    el.src = encodeURI(`./assets/${cat}/${src}`);
+    el.src = `./assets/${cat}/${src}`;
     el.setAttribute("loading", "lazy");
     el.setAttribute("data-category", cat);
     imgContainer.appendChild(el);

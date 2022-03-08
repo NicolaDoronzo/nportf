@@ -5,7 +5,7 @@ console.log();
 const vr = fs.readdirSync("./assets/vr");
 const proto = fs.readdirSync("./assets/proto");
 
-const byFirstNumberOfName = (a, b) => +a.split(" ")[0] - +b.split(" ")[0];
+const byFirstNumberOfName = (a, b) => +a.split("(")[0] - +b.split("(")[0];
 
 fs.writeFileSync(
   "./assets.js",
