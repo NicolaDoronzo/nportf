@@ -1,5 +1,8 @@
-MicroModal.init();
-
+MicroModal.init({
+  disableScroll: true,
+  awaitCloseAnimation: true,
+});
+const modalContainer = document.querySelector("#main-modal");
 const imgContainer = document.querySelector(".img-container");
 const cats = ["vr", "proto"];
 cats.forEach((cat) => {
@@ -8,10 +11,11 @@ cats.forEach((cat) => {
     el.src = `./assets/webp/${cat}/${src}`;
     el.setAttribute("loading", "lazy");
     el.setAttribute("data-category", cat);
-    el.id = `${cat}-${src}`;
     el.addEventListener("click", () => {
-      document.querySelector('#modal-1').querySelector('img').src = el.src
-      MicroModal.show('modal-1');
+      const modalImg = modalContainer.querySelector("img");
+      modalImg.src = el.src;
+      MicroModal.show("main-modal");
+      modalContainer.querySelector(".modal__container").scrollTop = 0;
     });
     imgContainer.appendChild(el);
   });
@@ -24,7 +28,7 @@ navItems.forEach((item) =>
     const clickedCategory = item.getAttribute("data-category-filter");
     selectedCategory =
       clickedCategory !== selectedCategory ? clickedCategory : null;
-    document.querySelectorAll("img").forEach((img) => {
+    imgContainer.querySelectorAll("img").forEach((img) => {
       if (
         !selectedCategory ||
         img.getAttribute("data-category") === selectedCategory
