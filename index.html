@@ -7,12 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@100;300;400&display=swap"
-      rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@100;300;400&display=swap"
+    rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="micromodal.css" />
     <title>Anastasia Momot</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
   </head>
   <body>
     <main class="container">
@@ -26,36 +27,17 @@
       </nav>
       <div class="img-container"></div>
 
-      
-      <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+      <div class="modal micromodal-slide" id="main-modal" aria-hidden="true">
         <div class="modal__overlay" tabindex="-1" data-micromodal-close>
           <div
             class="modal__container"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="modal-1-title"
+            aria-labelledby="main-modal-title"
           >
-            <!-- <header class="modal__header">
-              <h2 class="modal__title" id="modal-1-title">Micromodal</h2>
-              <button
-                class="modal__close"
-                aria-label="Close modal"
-                data-micromodal-close
-              ></button>
-            </header> -->
-            <main class="modal__content" id="modal-1-content">
-              <img>
+            <main class="modal__content" id="main-modal-content">
+              <img />
             </main>
-            <!-- <footer class="modal__footer">
-              <button class="modal__btn modal__btn-primary">Continue</button>
-              <button
-                class="modal__btn"
-                data-micromodal-close
-                aria-label="Close this dialog window"
-              >
-                Close
-              </button>
-            </footer> -->
           </div>
         </div>
       </div>
