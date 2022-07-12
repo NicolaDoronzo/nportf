@@ -1,16 +1,43 @@
 const fs = require("fs");
+const webpConverter = require("webp-converter");
 
-console.log();
+webpConverter.grant_permission();
 
-const vr = fs.readdirSync("./assets/vr");
-const proto = fs.readdirSync("./assets/proto");
+/* UTILS */
+const toWebp = (basepath) => (filename) =>
+  webpConverter.cwebp(
+    `./assets/${basepath}/${filename}`,
+    `./assets/webp/${basepath}/${filename.split(".")[0]}.webp`,
+    "-q 80"
+  );
 
 const byFirstNumberOfName = (a, b) => +a.split("(")[0] - +b.split("(")[0];
 
-fs.writeFileSync(
-  "./assets.js",
-  `const assets = { 
-      proto: [${proto.sort(byFirstNumberOfName).map((s) => `'${s}'`)}], 
-      vr: [${vr.sort(byFirstNumberOfName).map((s) => `'${s}'`)}]
+
+
+/* MAIN SCRIPT */
+
+
+const categories = ["vr", "proto"];
+
+Promise.all(
+  categories
+    .map((cat) => fs.readdirSync(`./assets/${cat}`).map(toWebp(cat)))
+    .flat()
+).then(() => writeAssetsFile());
+
+const writeAssetsFile = () =>
+  fs.writeFileSync(
+    "./assets.js",
+    `const assets = { 
+      proto: [${fs
+        .readdirSync("./assets/webp/proto")
+        .sort(byFirstNumberOfName)
+        .map((s) => `'${s}'`)}], 
+      vr: [${fs
+        .readdirSync("./assets/webp/vr")
+        .sort(byFirstNumberOfName)
+        .map((s) => `'${s}'`)}]
     }`
-);
+  );
+
