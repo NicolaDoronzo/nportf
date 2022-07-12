@@ -8,7 +8,7 @@ const toWebp = (basepath) => (filename) =>
   webpConverter.cwebp(
     `./assets/${basepath}/${filename}`,
     `./assets/webp/${basepath}/${filename.split(".")[0]}.webp`,
-    "-q 80"
+    "-q 100"
   );
 
 const byFirstNumberOfName = (a, b) => +a.split("(")[0] - +b.split("(")[0];
@@ -16,7 +16,6 @@ const byFirstNumberOfName = (a, b) => +a.split("(")[0] - +b.split("(")[0];
 
 
 /* MAIN SCRIPT */
-
 
 const categories = ["vr", "proto"];
 

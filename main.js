@@ -1,14 +1,21 @@
+MicroModal.init();
+
 const imgContainer = document.querySelector(".img-container");
-const cats = ['vr', 'proto'];
-cats.forEach(cat => {
-  assets[cat].forEach(src => {
+const cats = ["vr", "proto"];
+cats.forEach((cat) => {
+  assets[cat].forEach((src) => {
     const el = document.createElement("img");
     el.src = `./assets/webp/${cat}/${src}`;
     el.setAttribute("loading", "lazy");
     el.setAttribute("data-category", cat);
+    el.id = `${cat}-${src}`;
+    el.addEventListener("click", () => {
+      document.querySelector('#modal-1').querySelector('img').src = el.src
+      MicroModal.show('modal-1');
+    });
     imgContainer.appendChild(el);
-  })
-})
+  });
+});
 
 const navItems = document.querySelectorAll("nav li");
 let selectedCategory = null;
