@@ -1,9 +1,22 @@
-MicroModal.init({
-  disableScroll: true,
-  awaitCloseAnimation: true,
-});
+MicroModal.init();
+
 const modalContainer = document.querySelector("#main-modal");
 const imgContainer = document.querySelector(".img-container");
+
+const observer = new MutationObserver((mutations) => {
+  const isOpen = mutations[0].target.classList.contains("is-open");
+  document.body.style.overflow = isOpen ? "hidden" : "auto";
+});
+
+observer.observe(modalContainer, {
+  attributes: true,
+  childList: false,
+  subtree: false,
+  attributeFilter: ["class"],
+  characterData: false,
+  characterDataOldValue: false,
+  attributeOldValue: false,
+});
 const cats = ["vr", "proto"];
 cats.forEach((cat) => {
   assets[cat].forEach((src) => {
@@ -11,11 +24,10 @@ cats.forEach((cat) => {
     el.src = `./assets/webp/${cat}/${src}`;
     el.setAttribute("loading", "lazy");
     el.setAttribute("data-category", cat);
+    el.setAttribute("data-micromodal-trigger", "");
     el.addEventListener("click", () => {
-      const modalImg = modalContainer.querySelector("img");
-      modalImg.src = el.src;
+      ModalImage.create(el.src);
       MicroModal.show("main-modal");
-      modalContainer.querySelector(".modal__container").scrollTop = 0;
     });
     imgContainer.appendChild(el);
   });

@@ -35,6 +35,13 @@
   color: rgba(0, 0, 0, .8);
 }
 
+
+/* @media (orientation: landscape) {
+  .modal__content img {
+    height: auto;
+  }
+} */
+
 /**************************\
   Demo Animation Style
 \**************************/

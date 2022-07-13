@@ -83,7 +83,7 @@ nav ul li {
 
 }
 
-nav ul li + li {
+nav ul li+li {
   position: relative;
   margin-left: 1.5em;
 }
