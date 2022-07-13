@@ -6,12 +6,11 @@ class ModalImage {
     }
     ModalImage.instance = new ModalImage(src);
   }
-  
+
   startMouseX = null;
   startMouseY = null;
   startPosition = null;
   objectPositionBuffer = [];
-
 
   get boundingRect() {
     return this.element.getBoundingClientRect();
@@ -69,17 +68,12 @@ class ModalImage {
   }
 
   _handleEvents() {
-    this.element.addEventListener('mousemove', this._updateMousePosition, true);
     this.element.addEventListener("touchstart", this._reset);
     this.element.addEventListener("touchmove", this._moveObjectPosition);
     this.element.addEventListener("dragstart", this._reset);
     this.element.addEventListener("dragover", this._onDrag);
     this.element.addEventListener("dragend", this._retainSecondLastPosition);
     this.element.addEventListener("click", this._onDoubleTap(this._zoom));
-  }
-
-  _updateMousePosition = (ev) => {
-
   }
 
   _onDoubleTap = (cb) => {
@@ -100,7 +94,7 @@ class ModalImage {
 
   _onDrag = (ev) => {
     const crt = this.element.cloneNode(true);
-    crt.style.display = 'none';
+    crt.style.display = "none";
     document.body.appendChild(crt);
     ev.dataTransfer.setDragImage(crt, 0, 0);
     this._moveObjectPosition(ev);
@@ -120,7 +114,7 @@ class ModalImage {
     const deltaYPerc =
       ((this.startMouseY - relY) / this.element.clientHeight) * 100;
     const { x, y } = this.startPosition;
-    
+
     this.position = {
       x: clamp(0, 100, x + deltaXPerc),
       y: clamp(0, 100, y + deltaYPerc),
@@ -168,7 +162,7 @@ class ModalImage {
     this.element.removeEventListener("dragstart", this._reset);
     this.element.removeEventListener("touchstart", this._reset);
     this.element.removeEventListener("touchmove", this._moveObjectPosition);
-    this.element.removeEventListener("drag", this._onDrag);
+    this.element.removeEventListener("dragover", this._onDrag);
     this.element.removeEventListener("dragend", this._retainSecondLastPosition);
     this.element.removeEventListener("click", this._onDoubleTap(this._zoom));
     this.element.remove();
