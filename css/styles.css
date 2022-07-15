@@ -7,7 +7,6 @@
   4. Gallery section
 */
 
-
 /****** 1. General settings ******/
 
 * {
@@ -32,26 +31,25 @@ body {
   position: relative;
 }
 
-/* body::after {
+body::after {
   content: '';
   position: absolute;
   width: 100vw;
   height: 100vh;
   background-color: #000000;
   transition: opacity .5s ease-out;
-  overflow-x: hidden;
   z-index: 1000;
-} */
+}
 
-/* body.content-loaded::after {
+body.content-loaded::after {
   opacity: 0;
   pointer-events: none;
-} */
-
+}
 
 
 main {
   position: relative;
+  overflow-x: hidden;
 }
 
 a {
@@ -106,11 +104,10 @@ h2 {
 /* Scrolldown icon */
 
 .arrow-link {
+  position: absolute;
   z-index: 2;
   opacity: 0;
   transition: opacity .5s ease-in-out;
-
-  position: absolute;
   left: 50%;
   bottom: 5%;
 }
@@ -120,6 +117,7 @@ h2 {
 }
 
 .arrows {
+  position: relative;
   width: 60px;
   height: 72px;
   margin-left: -30px;
