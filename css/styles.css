@@ -16,6 +16,9 @@
 
 html {
   scroll-behavior: smooth;
+  --d-gap: 1em;
+  --m-gap: .5em;
+  --content-width: 1180px;
 }
 
 body {
@@ -27,6 +30,22 @@ body {
   font-family: "Noto Serif Display", serif;
   overflow-x: hidden;
 }
+
+body::after {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  transition: opacity .5s ease-out;
+}
+
+body.content-loaded::after {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
 
 main {
   position: relative;
@@ -41,14 +60,12 @@ a {
 
 #hero {
   position: relative;
-  display: flex;
   height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  background-image: url('/assets/webp/hero-bg.webp');
+  /* background-image: url('/assets/webp/hero-bg.webp'); */
   background-size: cover;
   background-position: 37%;
   width: 100vw;
+  display: flow-root;
 }
 
 #hero::after {
@@ -59,6 +76,7 @@ a {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
 }
 
 h1,
@@ -69,12 +87,13 @@ h2 {
   letter-spacing: 1rem;
   text-indent: 1rem;
   margin: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 h1 {
   font-size: max(5vw, 2.5rem);
   margin-bottom: 0.9em;
+  margin-top: 12%;
 }
 
 h2 {
@@ -85,6 +104,12 @@ h2 {
 
 .arrow-link {
   z-index: 1;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.arrow-link.visible {
+  opacity: 1;
 }
 
 .arrows {
@@ -93,7 +118,7 @@ h2 {
   position: absolute;
   left: 50%;
   margin-left: -30px;
-  bottom: 20px;
+  bottom: 5%;
   transform: scale(.7);
 }
 
@@ -147,7 +172,7 @@ h2 {
 }
 
 #gallery nav ul {
-  max-width: 1180px;
+  max-width: var(--content-width);
   margin: 0 auto;
   display: flex;
   text-transform: uppercase;
@@ -159,6 +184,7 @@ h2 {
 @media only screen and (max-width: 600px) {
   #gallery nav ul {
     justify-content: center;
+    padding-left: var(--m-gap);
   }
 }
 
@@ -184,25 +210,25 @@ h2 {
 #gallery .img-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1em;
+  gap: var(--d-gap);
   margin-left: auto;
   margin-right: auto;
-  max-width: 1180px;
+  max-width: var(--content-width);
 }
 
-.img-container + .img-container {
-  margin-top: 1em;
+.img-container+.img-container {
+  margin-top: var(--d-gap);
 }
 
 @media only screen and (max-width: 600px) {
   #gallery .img-container {
-    gap: 0.5em;
-    padding: 0 0.5em;
+    gap: var(--m-gap);
+    padding: 0 var(--m-gap);
   }
 
-  
-.img-container + .img-container {
-    margin-top: .5em;
+
+  .img-container+.img-container {
+    margin-top: var(--m-gap);
   }
 }
 
