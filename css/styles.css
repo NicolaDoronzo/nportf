@@ -29,6 +29,7 @@ body {
   align-items: center;
   font-family: "Noto Serif Display", serif;
   overflow-x: hidden;
+  position: relative;
 }
 
 body::after {
@@ -38,6 +39,7 @@ body::after {
   height: 100vh;
   background-color: #000000;
   transition: opacity .5s ease-out;
+  overflow-x: hidden;
   z-index: 1000;
 }
 
