@@ -1,13 +1,13 @@
 MicroModal.init();
 
 const bgImageSrc = "./assets/webp/hero-bg.webp";
-load("./assets/webp/hero-bg.webp").then(() => {
+load(bgImageSrc).then(() => {
   const heroSection = document.getElementById("hero");
   heroSection.style.backgroundImage = `url(${bgImageSrc})`;
-  document.body.classList.add('content-loaded');
+  document.body.classList.add("content-loaded");
   setTimeout(
     () => heroSection.querySelector("a").classList.add("visible"),
-    3000
+    1500
   );
 });
 
