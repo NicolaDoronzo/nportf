@@ -143,7 +143,7 @@ class ModalImage {
   };
 
   _reset = (ev) => {
-    ev?.dataTransfer.setDragImage(new Image(), 0, 0);
+    ev?.dataTransfer?.setDragImage(new Image(), 0, 0);
     this.startMouseX = null;
     this.startMouseY = null;
     this.startPosition = this.position;

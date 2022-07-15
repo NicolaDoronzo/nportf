@@ -1,0 +1,214 @@
+/* 
+  TABLE OF CONTENT
+  
+  1. General settings
+  2. Hero section
+  3. About section
+  4. Gallery section
+*/
+
+
+/****** 1. General settings ******/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Noto Serif Display", serif;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/****** 2. Hero section ******/
+
+#hero {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('/assets/webp/hero-bg.webp');
+  background-size: cover;
+  background-position: 37%;
+  width: 100vw;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+h1,
+h2 {
+  text-align: center;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  text-indent: 1rem;
+  margin: 0;
+  z-index: 1;
+}
+
+h1 {
+  font-size: max(5vw, 2.5rem);
+  margin-bottom: 0.9em;
+}
+
+h2 {
+  font-size: max(3.5vw, 1.8rem);
+}
+
+/* Scrolldown icon */
+
+.arrow-link {
+  z-index: 1;
+}
+
+.arrows {
+  width: 60px;
+  height: 72px;
+  position: absolute;
+  left: 50%;
+  margin-left: -30px;
+  bottom: 20px;
+  transform: scale(.7);
+}
+
+.arrows path {
+  stroke: #000000;
+  fill: transparent;
+  stroke-width: 1px;
+  animation: arrow 1.5s infinite;
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 0
+  }
+
+  40% {
+    opacity: 1
+  }
+
+  80% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 0
+  }
+}
+
+.arrows path.a1 {
+  animation-delay: -1s;
+}
+
+.arrows path.a2 {
+  animation-delay: -0.5s;
+}
+
+.arrows path.a3 {
+  animation-delay: 0s;
+}
+
+/****** 3. About section ******/
+
+
+/****** 4. Gallery section ******/
+
+
+#gallery nav {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+}
+
+#gallery nav ul {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  text-transform: uppercase;
+  list-style: none;
+  padding: 1em;
+  padding-left: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  #gallery nav ul {
+    justify-content: center;
+  }
+}
+
+#gallery nav ul li {
+  cursor: pointer;
+  padding-bottom: 5px;
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
+  align-self: flex-end;
+
+}
+
+#gallery nav ul li+li {
+  position: relative;
+  margin-left: 1.5em;
+}
+
+#gallery nav ul li a.selected {
+  border-bottom: 1px solid #000000;
+}
+
+#gallery .img-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1180px;
+}
+
+.img-container + .img-container {
+  margin-top: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+  #gallery .img-container {
+    gap: 0.5em;
+    padding: 0 0.5em;
+  }
+
+  
+.img-container + .img-container {
+    margin-top: .5em;
+  }
+}
+
+#gallery .img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
