@@ -32,7 +32,7 @@ body {
   position: relative;
 }
 
-body::after {
+/* body::after {
   content: '';
   position: absolute;
   width: 100vw;
@@ -41,12 +41,12 @@ body::after {
   transition: opacity .5s ease-out;
   overflow-x: hidden;
   z-index: 1000;
-}
+} */
 
-body.content-loaded::after {
+/* body.content-loaded::after {
   opacity: 0;
   pointer-events: none;
-}
+} */
 
 
 
