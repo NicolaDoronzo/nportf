@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-
+const sharp = require('sharp');
 const webpConverter = require("webp-converter");
 
 const configs = {

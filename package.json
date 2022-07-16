@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/NicolaDoronzo/nportf#readme",
   "devDependencies": {
+    "sharp": "^0.30.7",
     "webp-converter": "^2.3.3"
   }
 }
