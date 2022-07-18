@@ -4,6 +4,7 @@ class ModalImage {
     if (ModalImage.instance) {
       ModalImage.instance._destroy();
     }
+    console.log(src);
     ModalImage.instance = new ModalImage(src);
   }
 
@@ -51,6 +52,7 @@ class ModalImage {
     this.element.draggable = true;
     this._setInitialStyle(src);
     document.querySelector("#main-modal-content").appendChild(this.element);
+    this._setImage(src);
     this._handleEvents();
   }
 
@@ -58,13 +60,16 @@ class ModalImage {
     this.element.style.position = "relative";
     this.element.style.width = "100%";
     this.element.style.height = "100%";
-    this.element.style.backgroundImage = `url('${bgImageSrc}')`;
     this.element.style.backgroundRepeat = "no-repeat";
     this.element.style.backgroundSize =
       window.innerWidth > window.innerHeight ? "100% auto" : "auto 100%";
     this.element.style.backgroundPosition = "50% 50%";
     this.element.style.willChange = "background-size";
     this.element.style.transition = "background-size .2s ease-out";
+  }
+
+  _setImage(src) {
+    this.element.style.backgroundImage = `url('${bgImageSrc}')`;
   }
 
   _handleEvents() {

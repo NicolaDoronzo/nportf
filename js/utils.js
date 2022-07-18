@@ -2,7 +2,7 @@ function clamp(min, max, v) {
   return Math.max(Math.min(v, max), min);
 }
 
-function load(src) {
+function preload(src) {
   return new Promise((resolve, reject) => {
     const image = new Image();
     image.addEventListener("load", resolve);
