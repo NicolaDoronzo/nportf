@@ -56,7 +56,7 @@ class ModalImage {
     this._handleEvents();
   }
 
-  _setInitialStyle(bgImageSrc) {
+  _setInitialStyle() {
     this.element.style.position = "relative";
     this.element.style.width = "100%";
     this.element.style.height = "100%";
@@ -69,7 +69,7 @@ class ModalImage {
   }
 
   _setImage(src) {
-    this.element.style.backgroundImage = `url('${bgImageSrc}')`;
+    this.element.style.backgroundImage = `url('${src}')`;
   }
 
   _handleEvents() {
