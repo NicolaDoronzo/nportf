@@ -1,8 +1,8 @@
 MicroModal.init();
 const bgImageSrc = "./assets/webp/hero-bg.webp";
 const modalContainer = document.querySelector("#main-modal");
-const imgContainer = document.querySelector(".img-container");
 const heroSection = document.getElementById("hero");
+const navItems = document.querySelectorAll(`nav li a`);
 
 const isModalOpenObserver = new MutationObserver((mutations) => {
   const isOpen = mutations[0].target.classList.contains("is-open");
@@ -40,28 +40,31 @@ function init(assets) {
       el.src = obj[400];
       el.setAttribute("loading", "lazy");
       el.addEventListener("click", () => {
-        ModalImage.create(obj.full);
+        ModalImage.create(obj);
         MicroModal.show("main-modal");
       });
       document.getElementById(cat).appendChild(el);
     });
   });
 
-  categories.forEach((cat) => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        document
-          .querySelector(`li [href="#${cat}"]`)
-          .classList[entries[0].isIntersecting ? "add" : "remove"]("selected");
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.001,
+  function selectSectionByItem(navItem) {
+    navItems.forEach((i) => i.classList.remove("selected"));
+    const selectedSection = navItem.getAttribute("data-section-trigger");
+    navItem.classList.add("selected");
+    document.querySelectorAll(".img-container").forEach((section) => {
+      if (section.id === selectedSection) {
+        section.style.display = "grid";
+      } else {
+        section.style.display = "none";
       }
-    );
-    io.observe(document.getElementById(cat));
-  });
+    });
+  }
+
+  selectSectionByItem(navItems[0]);
+
+  navItems.forEach((navItem) =>
+    navItem.addEventListener("click", selectSectionByItem.bind(null, navItem))
+  );
 }
 
 Promise.all([

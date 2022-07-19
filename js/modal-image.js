@@ -1,11 +1,10 @@
 class ModalImage {
   static instance = null;
-  static create(src) {
+  static create(obj) {
     if (ModalImage.instance) {
       ModalImage.instance._destroy();
     }
-    console.log(src);
-    ModalImage.instance = new ModalImage(src);
+    ModalImage.instance = new ModalImage(obj);
   }
 
   startMouseX = null;
@@ -47,12 +46,17 @@ class ModalImage {
         : `auto ${percString}`;
   }
 
-  constructor(src) {
+  constructor(obj) {
     this.element = document.createElement("div");
     this.element.draggable = true;
-    this._setInitialStyle(src);
+    this._setInitialStyle();
     document.querySelector("#main-modal-content").appendChild(this.element);
-    this._setImage(src);
+    this._setImage(obj.blur);
+    preload(obj.full).then(() =>
+      setTimeout(() => {
+        this._setImage(obj.full);
+      }, 500)
+    );
     this._handleEvents();
   }
 
@@ -82,14 +86,18 @@ class ModalImage {
   }
 
   _onDoubleTap = (cb) => {
+    const doubleTapThreshold = 600;
     let firstClickTime = Date.now();
     let isSecondTapping = false;
     return () => {
       const secondClickTime = Date.now();
-      if (secondClickTime - firstClickTime < 600 && !isSecondTapping) {
+      if (
+        secondClickTime - firstClickTime < doubleTapThreshold &&
+        !isSecondTapping
+      ) {
         isSecondTapping = true;
         cb();
-        setTimeout(() => (isSecondTapping = false), 600);
+        setTimeout(() => (isSecondTapping = false), doubleTapThreshold);
       }
       firstClickTime = Date.now();
     };
@@ -160,7 +168,7 @@ class ModalImage {
   }
 
   _zoomIn() {
-    this.zoomLevel = 2;
+    this.zoomLevel = 2.5;
   }
 
   _destroy() {
