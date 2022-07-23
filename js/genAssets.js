@@ -23,9 +23,9 @@ const vestitiRealizzati = [
 ];
 
 const prototipi = [
-  "camicia-baby(1)",
+  "camicia-baby(2)",
   "vestito-top(1)",
-  "giacca(1)",
+  "giacca(3)",
   "vestito-maniche-lunghe(1)",
   "vestito-manica-rigonfia(1)",
   "vestito-colletto-sovrapposto(1)",
